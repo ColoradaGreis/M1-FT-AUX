@@ -8,6 +8,16 @@ const { BinarySearchTree } = require("../estructuras")
 //         /  \      /  \
 //      (2)  (9)  (11)  (15)   
 BinarySearchTree.prototype.search= function(value){
+    if(this.value === value) return this.value;
+    if(this.value < value && this.right !== null) {
+              return  this.right.search(value);
+    }
+    if(this.value > value && this.left !== null) {
+             return   this.left.search(value);
+    } else {
+        return "no se encontró el valor";
+    }
+ 
    
 }
 
@@ -21,6 +31,17 @@ BinarySearchTree.prototype.search= function(value){
 
 
 BinarySearchTree.prototype.height= function(){
+    if(this.left === null && this.right === null) {
+        return 0;
+    } else {
+        if(this.left !== null && this.right === null) {
+         return this.left.height() + 1;   
+        } else if(this.left === null && this.right !== null) {
+            return this.right.height() +1;
+        } else {
+            return Math.max(this.left.height() + 1, this.right.height()+1)
+        }
+    }
  
 }
 

@@ -4,6 +4,14 @@
 
 const producto = function (array) {
   //escribe aqui tu codigo
+  if(array.length === 1) return array[0]
+  var ultimo = array[array.length-1];
+  var penUltimo = array[array.length-2];
+  var prod = ultimo * penUltimo;
+  array.pop();
+  array.pop();
+  array.push(prod);
+  return producto(array)
 
 };
 
@@ -26,7 +34,15 @@ const producto = function (array) {
 
 
 const isThere = function (obj, value){
-  //escribe aqui tu codigo 
+  //escribe aqui tu codigo
+ for(let key in obj) {
+   if(typeof obj[key] === 'object') {
+   return isThere(obj[key], value);
+   } else if(obj[key] === value) {
+     return true;
+   }
+ } return false
+
 
 };
 module.exports = { producto, isThere };
